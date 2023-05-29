@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.alura.designsystem.theme.VoxfyTheme
+import br.com.alura.core.designsystem.theme.VoxfyTheme
 import br.com.alura.voxfy.navigation.VoxfyNavHost
 import dagger.hilt.android.AndroidEntryPoint
 

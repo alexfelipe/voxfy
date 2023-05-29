@@ -1,4 +1,4 @@
-package br.com.alura.designsystem.components
+package br.com.alura.core.designsystem.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -22,9 +21,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.alura.designsystem.theme.CardBackground
-import br.com.alura.designsystem.theme.TextColor
-import br.com.alura.designsystem.theme.VoxfyTheme
+import br.com.alura.core.designsystem.theme.CardBackground
+import br.com.alura.core.designsystem.theme.TextColor
+import br.com.alura.core.designsystem.theme.VoxfyTheme
 import coil.compose.AsyncImage
 
 @Composable

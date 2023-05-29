@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
@@ -29,14 +28,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.alura.designsystem.components.FeaturedCard
-import br.com.alura.designsystem.components.PlayedCard
-import br.com.alura.designsystem.theme.TextColor
-import br.com.alura.designsystem.theme.VoxfyTheme
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import br.com.alura.core.designsystem.components.FeaturedCard
+import br.com.alura.core.designsystem.components.PlayedCard
+import br.com.alura.core.designsystem.theme.TextColor
+import br.com.alura.core.designsystem.theme.VoxfyTheme
 import kotlin.random.Random
 
 @Composable

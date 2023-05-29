@@ -1,4 +1,4 @@
-package br.com.alura.designsystem.theme
+package br.com.alura.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 
