@@ -1,4 +1,4 @@
-package br.com.alura.core.designsystem.components
+package br.com.alura.core.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

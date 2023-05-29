@@ -28,10 +28,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.alura.core.designsystem.components.FeaturedCard
-import br.com.alura.core.designsystem.components.PlayedCard
+import br.com.alura.core.designsystem.theme.MainBackgroundColor
 import br.com.alura.core.designsystem.theme.TextColor
 import br.com.alura.core.designsystem.theme.VoxfyTheme
+import br.com.alura.core.ui.components.FeaturedCard
+import br.com.alura.core.ui.components.PlayedCard
 import kotlin.random.Random
 
 @Composable
@@ -40,13 +41,7 @@ fun HomeScreen(uiState: HomeUiState) {
         Modifier
             .fillMaxSize()
             .background(
-                brush = Brush.linearGradient(
-                    colors =
-                    listOf(
-                        Color(0xFF154580),
-                        Color(0xFF041833),
-                    )
-                )
+                brush = MainBackgroundColor
             )
             .verticalScroll(rememberScrollState())
     ) {
