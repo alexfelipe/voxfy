@@ -1,13 +1,13 @@
 package br.com.alura.designsystem.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -24,10 +24,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import br.com.alura.designsystem.theme.CardBackground
+import br.com.alura.designsystem.theme.TextColor
 import br.com.alura.designsystem.theme.VoxfyTheme
 import coil.compose.AsyncImage
 import kotlin.random.Random
@@ -37,43 +42,50 @@ fun PlayedCard(
     imageUrl: String,
     contentDescription: String?,
     songTitle: String,
-    songDesc: String,
+    songDescription: String,
     modifier: Modifier = Modifier,
     songProgression: Float = 0.0f
 ) {
-    val cardBackground = Color(0xFF365a86)
     Row(
         modifier
             .clip(RoundedCornerShape(10.dp))
-            .background(cardBackground)
-            .height(72.dp)
+            .background(CardBackground)
+            .height(72.dp),
+        horizontalArrangement = Arrangement.Center
     ) {
         AsyncImage(
             model = imageUrl,
             contentDescription = contentDescription,
             Modifier
-                .height(72.dp)
+                .fillMaxHeight()
                 .weight(1.0f),
             placeholder = ColorPainter(Color.Gray),
             contentScale = ContentScale.Crop
         )
         Column(
             Modifier
+                .fillMaxHeight()
                 .padding(
                     horizontal = 20.dp,
                     vertical = 8.dp
                 )
-                .weight(3.0f)
+                .weight(3.0f),
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
                 songTitle,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyle.Default.copy(color = TextColor),
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Bold
             )
             Text(
-                songDesc,
+                songDescription,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                style = TextStyle.Default.copy(color = TextColor),
+                fontSize = 12.sp
             )
             LinearProgressIndicator(
                 songProgression, Modifier
@@ -83,8 +95,8 @@ fun PlayedCard(
         }
         Box(
             modifier = Modifier
+                .fillMaxHeight()
                 .weight(1.0f)
-                .height(72.dp)
         ) {
             FloatingActionButton(
                 onClick = { /*TODO*/ },
@@ -109,8 +121,9 @@ fun PlayedCardPreview() {
                 imageUrl = "",
                 contentDescription = null,
                 songTitle = LoremIpsum(5).values.first(),
-                songDesc = LoremIpsum(2).values.first(),
-                songProgression = Random.nextFloat()
+                songDescription = LoremIpsum(2).values.first(),
+                songProgression = Random.nextFloat(),
+                modifier = Modifier.height(72.dp)
             )
         }
     }
