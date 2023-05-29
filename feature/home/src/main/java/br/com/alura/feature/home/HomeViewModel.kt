@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
         _uiState.update {
             it.copy(
                 recentlyPlayedSongs = generateSongs(10),
-                featuredSongs = generateSongs(10)
+                featuredSongs = generateSongs(20)
             )
         }
     }

@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.alura.core.designsystem.theme.MainBackgroundColor
@@ -50,46 +49,67 @@ fun HomeScreen(
             )
             .verticalScroll(rememberScrollState())
     ) {
-        RecentlyPlayed(featuredSongs)
-        Column {
-            Text(
-                text = "Hipsters Ponto Tech",
-                Modifier.padding(
-                    top = 16.dp,
-                    start = 16.dp,
-                    end = 16.dp
-                ),
-                style = TextStyle.Default.copy(TextColor),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
+        RecentlyPlayed(
+            title = "Tocados recentemente",
+            songs = recentlyPlayedSongs
+        )
+        FeaturedSongs(
+            title = "Hipsters Ponto Tech",
+            songs = featuredSongs.shuffled().take(6)
+        )
+        FeaturedSongs(
+            title = "Músicas novas",
+            songs = featuredSongs.shuffled().take(6)
+        )
+    }
+}
+
+@Composable
+private fun FeaturedSongs(
+    title: String,
+    songs: List<Song>
+) {
+    Column {
+        Text(
+            text = title,
+            Modifier.padding(
+                top = 16.dp,
+                start = 16.dp,
+                end = 16.dp
+            ),
+            style = TextStyle.Default.copy(TextColor),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+    }
+    LazyRow(
+        contentPadding = PaddingValues(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        items(songs) { song ->
+            FeaturedCard(
+                imageUrl = song.albumPic,
+                contentDescription = null,
+                songTitle = song.title,
+                songDescription = song.description,
+                Modifier
+                    .height(300.dp)
+                    .width(200.dp)
             )
-        }
-        LazyRow(
-            contentPadding = PaddingValues(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(recentlyPlayedSongs) { song ->
-                FeaturedCard(
-                    imageUrl = song.albumPic,
-                    contentDescription = null,
-                    songTitle = song.title,
-                    songDescription = song.description,
-                    Modifier
-                        .height(300.dp)
-                        .width(200.dp)
-                )
-            }
         }
     }
 }
 
 @Composable
-private fun RecentlyPlayed(songs: List<Song>) {
+private fun RecentlyPlayed(
+    title: String,
+    songs: List<Song>
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         Text(
-            text = "Tocados recentemente",
+            text = title,
             Modifier.padding(
                 top = 16.dp,
                 start = 16.dp,
