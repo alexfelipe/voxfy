@@ -29,6 +29,8 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":core:designsystem"))
+    implementation(project(":core:model"))
+    implementation(libs.kotlinx.datetime)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)

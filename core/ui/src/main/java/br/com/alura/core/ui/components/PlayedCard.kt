@@ -39,7 +39,7 @@ import kotlin.random.Random
 
 @Composable
 fun PlayedCard(
-    imageUrl: String,
+    imageUrl: String?,
     contentDescription: String?,
     songTitle: String,
     songDescription: String,

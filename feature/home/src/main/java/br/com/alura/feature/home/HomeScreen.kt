@@ -14,14 +14,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,12 +31,17 @@ import androidx.compose.ui.unit.sp
 import br.com.alura.core.designsystem.theme.MainBackgroundColor
 import br.com.alura.core.designsystem.theme.TextColor
 import br.com.alura.core.designsystem.theme.VoxfyTheme
+import br.com.alura.core.model.Song
 import br.com.alura.core.ui.components.FeaturedCard
 import br.com.alura.core.ui.components.PlayedCard
 import kotlin.random.Random
 
 @Composable
-fun HomeScreen(uiState: HomeUiState) {
+fun HomeScreen(
+    uiState: HomeUiState
+) {
+    val featuredSongs = uiState.featuredSongs
+    val recentlyPlayedSongs = uiState.recentlyPlayedSongs
     Column(
         Modifier
             .fillMaxSize()
@@ -45,7 +50,7 @@ fun HomeScreen(uiState: HomeUiState) {
             )
             .verticalScroll(rememberScrollState())
     ) {
-        RecentlyPlayed()
+        RecentlyPlayed(featuredSongs)
         Column {
             Text(
                 text = "Hipsters Ponto Tech",
@@ -63,20 +68,12 @@ fun HomeScreen(uiState: HomeUiState) {
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(10) {
-                val widthResolution = Random.nextInt(
-                    1920,
-                    2048
-                )
-                val heightResolution = Random.nextInt(
-                    1080,
-                    1440
-                )
+            items(recentlyPlayedSongs) { song ->
                 FeaturedCard(
-                    imageUrl = "https://picsum.photos/$widthResolution/$heightResolution",
+                    imageUrl = song.albumPic,
                     contentDescription = null,
-                    songTitle = LoremIpsum(Random.nextInt(5, 20)).values.first(),
-                    songDescription = LoremIpsum(Random.nextInt(5, 20)).values.first(),
+                    songTitle = song.title,
+                    songDescription = song.description,
                     Modifier
                         .height(300.dp)
                         .width(200.dp)
@@ -87,7 +84,7 @@ fun HomeScreen(uiState: HomeUiState) {
 }
 
 @Composable
-private fun RecentlyPlayed() {
+private fun RecentlyPlayed(songs: List<Song>) {
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
@@ -111,20 +108,12 @@ private fun RecentlyPlayed() {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             contentPadding = PaddingValues(horizontal = 16.dp)
         ) {
-            items(6) {
-                val widthResolution = Random.nextInt(
-                    1920,
-                    2048
-                )
-                val heightResolution = Random.nextInt(
-                    1080,
-                    1440
-                )
+            items(songs) { song ->
                 PlayedCard(
-                    imageUrl = "https://picsum.photos/$widthResolution/$heightResolution",
+                    imageUrl = song.albumPic,
                     contentDescription = null,
-                    songTitle = LoremIpsum(Random.nextInt(5, 20)).values.first(),
-                    songDescription = LoremIpsum(Random.nextInt(5, 20)).values.first(),
+                    songTitle = song.title,
+                    songDescription = song.description,
                     Modifier
                         .requiredHeight(72.dp)
                         .width(350.dp),
